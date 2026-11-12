@@ -22,13 +22,21 @@ if [[ ! -f "$SKILL_MD" ]]; then
   exit 1
 fi
 
-if ! grep -qE '^[[:space:]]*name:' "$SKILL_MD"; then
-  echo "ERROR: SKILL.md is missing a 'name:' metadata field" >&2
+if [[ "$(head -n 1 "$SKILL_MD")" != "---" ]]; then
+  echo "ERROR: SKILL.md must start with a '---' YAML frontmatter delimiter" >&2
   exit 1
 fi
 
-if ! grep -qE '^[[:space:]]*description:' "$SKILL_MD"; then
-  echo "ERROR: SKILL.md is missing a 'description:' metadata field" >&2
+# Extract the frontmatter block (between the first two '---' lines).
+FRONTMATTER="$(awk 'NR==1{next} /^---[[:space:]]*$/{exit} {print}' "$SKILL_MD")"
+
+if ! grep -qE '^[[:space:]]*name:' <<<"$FRONTMATTER"; then
+  echo "ERROR: SKILL.md frontmatter is missing a 'name:' field" >&2
+  exit 1
+fi
+
+if ! grep -qE '^[[:space:]]*description:' <<<"$FRONTMATTER"; then
+  echo "ERROR: SKILL.md frontmatter is missing a 'description:' field" >&2
   exit 1
 fi
 

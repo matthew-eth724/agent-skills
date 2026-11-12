@@ -2,8 +2,10 @@
 
 Copy this into a new skill folder and fill in the bracketed parts.
 
+---
 name: [kebab-case-skill-name]
 description: [One line: what this skill does and when an agent should use it.]
+---
 
 # [Skill Title]
 
