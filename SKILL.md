@@ -1,7 +1,7 @@
-name: agent-skill-creator
+name: agent-skills
 description: Teaches an agent how to author Agent Skills — writing SKILL.md metadata and instructions, choosing folder structure (scripts, references, assets), and validating the result against the Agent Skills format.
 
-# Agent Skill Creator
+# Agent Skills
 
 This skill shows an agent how to create a new Agent Skill in the standard format: a folder containing at least a `SKILL.md` with `name` and `description` metadata plus instructions, and optionally `scripts/`, `references/`, `assets/`, and other files.
 
